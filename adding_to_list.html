@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andada+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="adding_to_list_style.css">
+<title></title>
+
+<div class="container">
+
+<body class="p-3 mb-2 bg-dark text-white">
+<h1><div class="jumbotron">List
+<p class="lead">To add an item to the list, press "ENTER", to clear the list, press "ESC."</p>
+<hr class="my-3">
+</div></h1>
+
+
+
+<input id="new-text" class="input-group input-group-sm mb-3"></input>
+
+
+
+
+<span class="float-left"><button id="add-text" class="btn btn-primary ">Add</button></span>
+ 
+
+<span class="float-right"><button id="clear-text" class="btn btn-primary">Clear</button></span>
+
+<div class="mx-auto bg-dark" style="width:150px">
+<ul id="list-of-text"></ul>
+</div>
+
+
+
+<script>
+document.addEventListener('keyup', function(){
+if (event.keyCode ==27){
+    clearButton.click()
+}
+})
+
+document.addEventListener('keyup', function(){
+if (event.keyCode ==13){
+    addButton.click()
+}
+
+
+})
+
+
+
+
+let textInput = document.querySelector('#new-text')
+let addButton = document.querySelector('#add-text')
+let clearButton = document.querySelector('#clear-text')
+let textList = document.querySelector('#list-of-text')
+let elementsInList = 0
+let maxElementsInList = 10
+
+
+addButton.addEventListener('click', function() {
+    let newText = textInput.value
+
+
+if (newText.length > 50) {
+    alert('Error - 50 word limit.')
+    return
+}
+
+// User will get the cold shoulder, if they fail to provide input.
+
+if (newText.length == 0) {
+return
+}
+
+
+
+if (elementsInList >= maxElementsInList) {
+alert('Attention - Your list is full! Clear list to add more items!')
+
+return
+
+ }       
+    
+    console.log(newText)
+    
+    let newListItem = document.createElement('li')
+    
+    newListItem.innerHTML = newText
+
+    textList.appendChild(newListItem)
+
+    textInput.value = ''
+
+    elementsInList++
+
+clearButton.addEventListener('click', function(){
+    textList.innerHTML = ''
+    elementsInList = 0     
+    
+
+})
+
+
+})
+
+</script>    
+</body>
+</div>
+</html>
