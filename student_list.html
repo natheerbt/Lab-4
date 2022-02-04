@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Club Membership</title>
+
+  <style>
+      
+      .selected {
+        text-decoration: line-through ;
+        font-style: italic;
+        color: gray;
+      }
+
+      input {
+          width: 100%;
+          padding: 5px;
+          margin: 5px 5px 5px 0px;
+          box-sizing: border-box;
+
+      }
+
+  </style>
+
+</head>
+<body>
+
+    <h1>Student Club Roster</h1>
+
+    <h2>Add Students</h2>
+
+    <label for="student-name">Student Name</label><input id="student-name" name="student-name">
+    <br>
+    <label for="student-id">Student ID</label><input id="student-id" name="student-id">
+    <br>
+    <label for="student-gpa">Student GPA</label><input id="student-gpa" name="student-gpa" type="number">
+    <br>
+    <button id="add-student">Add Student</button>    
+
+    <h2>Student List</h2>
+
+    <p>There are 
+        <span id="student-count">
+          <!-- use JavaScript to count the number of students, and show here -->
+        </span> 
+    student(s) in the club.</p>
+    
+
+    <ul id="student-list">
+        <!-- use JavaScript to create li elements  -->
+    </ul>
+
+    <button id="remove-selected-students">Remove selected students</button>
+
+<script>
+document.addEventListener('keyup', function(){
+if (event.keyCode ==27){
+    clearButton.click()
+}
+})
+
+document.addEventListener('keyup', function(){
+if (event.keyCode ==13){
+    addButton.click()
+}
+
+
+})
+
+
+let studentCount = document.querySelector('#student-count')
+
+count = 0
+
+studentCount.innerHTML = count
+
+console.log(count)
+
+
+let newNameInput = document.querySelector('#student-name')
+
+let addButton = document.querySelector('#add-student')
+addButton.addEventListener('click', function(){
+let newName = newNameInput.value
+if (newName.length == 0) {
+    alert('Error - Enter a name')
+    return
+
+}
+let newIdInput = document.querySelector('#student-id')
+let newID = newIdInput.value
+if (newID.length == 0){
+    alert('Error - Enter ID')
+    return
+}
+
+let newGPAInput = document.querySelector('#student-gpa')
+let newGPA = newGPAInput.value
+if (newGPA.length == 0) {
+    alert('Error - Enter valid GPA')
+    return
+
+}
+
+else if (newGPA >= 5) {
+    alert('Error - Enter a number between 1-4')
+    return
+}
+else if (newGPA <= 0) {
+    alert('Error - Enter a number between 1-4')
+    return
+}
+
+let studentList = document.querySelector('#student-list')
+let newListItem = document.createElement('li')
+newListItem.innerHTML = `Name: ${newName}, ID: ${newID}, GPA: ${newGPA}`
+
+newListItem.addEventListener('click', function(){
+newListItem.classList.toggle("selected");
+
+})
+
+
+studentList.appendChild(newListItem)
+newNameInput.value = ''
+newIdInput.value = ''
+newGPAInput.value = ''
+count = count + 1
+studentCount.innerHTML = count
+
+console.log(count)
+
+let clearButton = document.querySelector('#remove-selected-students')
+clearButton.addEventListener('click', function(){
+let elementsToDelete = document.querySelectorAll(".selected")
+elementsToDelete.forEach(function(element){
+element.remove()
+count = count - 1
+
+studentCount.innerHTML = count
+
+console.log(count)
+    
+
+})
+})
+
+
+})
+
+</script>
+
+</body>
+</html>
