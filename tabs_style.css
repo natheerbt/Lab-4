@@ -1,0 +1,29 @@
+.tab-button {
+    background-color: aquamarine;
+    border: none;
+    padding: 10px;
+    margin:1px;
+    outline:none;
+
+}
+
+.tab-button:hover {
+    background-color: brown;
+}
+
+#tabs {
+    background-color: blanchedalmond;
+    border: 1px solid brown;
+}
+
+.tab-content {
+    border-right: brown solid 1px;
+    border-left: brown solid 1px;
+    border-bottom: brown solid 1px;
+    padding: 10px;
+}
+
+
+.tab-button.active {
+    background-color: greenyellow;
+}

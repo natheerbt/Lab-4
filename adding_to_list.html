@@ -36,6 +36,9 @@
 
 
 <script>
+
+// Eventlisteners that will add input to list if user presses enter, and clear list if they press esc
+
 document.addEventListener('keyup', function(){
 if (event.keyCode ==27){
     clearButton.click()
@@ -51,7 +54,8 @@ if (event.keyCode ==13){
 })
 
 
-
+// Using querySelector to define JS variables that use the HTML ID attributes to get the info from the top half of this code
+// making a counter for the LI elements, setting the max amount of elements to 10
 
 let textInput = document.querySelector('#new-text')
 let addButton = document.querySelector('#add-text')
@@ -60,6 +64,8 @@ let textList = document.querySelector('#list-of-text')
 let elementsInList = 0
 let maxElementsInList = 10
 
+// Event listener that triggers when user submits input, conditional statment that will trigger an alert if 
+// user tries to add LI element that is more than 50 characters 
 
 addButton.addEventListener('click', function() {
     let newText = textInput.value
@@ -76,7 +82,7 @@ if (newText.length == 0) {
 return
 }
 
-
+// Alert if user tries to add more than 10 LI elements
 
 if (elementsInList >= maxElementsInList) {
 alert('Attention - Your list is full! Clear list to add more items!')
@@ -84,7 +90,9 @@ alert('Attention - Your list is full! Clear list to add more items!')
 return
 
  }       
-    
+
+ // If alerts arent triggered, new LI element will be appended to the list, counter will increase by 1, input field will clear
+
     console.log(newText)
     
     let newListItem = document.createElement('li')
@@ -96,6 +104,8 @@ return
     textInput.value = ''
 
     elementsInList++
+
+// Eventlistner for clear button, all LI elements will be removed and counter will reset to 0
 
 clearButton.addEventListener('click', function(){
     textList.innerHTML = ''

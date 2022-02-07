@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>Hello World!</title>
+<h2>Hello World!</h2>
+
+</head>
+
+<body>
+
+<button>Click HERE!</button>
+
+
+
+
+
+
+
+
+<script>
+    
+let button = document.querySelector('button')
+
+button.addEventListener('mouseover', function() {
+alert('You clicked the button!')
+button.innerHTML = 'You clicked the button!'
+button.style.backgroundColor = 'red'
+
+})
+
+function displayWidth() {
+    let width = document.body.scrollWidth;
+    let widthDisplayEL = document.querySelector('#width')
+    widthDisplayEl.innerHTML = 'Window width = ${width} pixels'
+
+}
+
+displayWidth()
+
+window.addEventListener('resize', displayWidth)
+
+</script>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
