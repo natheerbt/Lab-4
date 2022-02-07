@@ -52,22 +52,18 @@
     <button id="remove-selected-students">Remove selected students</button>
 
 <script>
-document.addEventListener('keyup', function(){
-if (event.keyCode ==27){
-    clearButton.click()
-}
-})
 
-document.addEventListener('keyup', function(){
-if (event.keyCode ==13){
-    addButton.click()
-}
-
-
-})
-
+// Using querySelector to define JS variables that use the HTML ID attributes to get the info from the top half of this code
 
 let studentCount = document.querySelector('#student-count')
+let newNameInput = document.querySelector('#student-name')
+let addButton = document.querySelector('#add-student')
+let newIdInput = document.querySelector('#student-id')
+let newGPAInput = document.querySelector('#student-gpa')
+let studentList = document.querySelector('#student-list')
+let clearButton = document.querySelector('#remove-selected-students')
+
+// Creating a counter variable, setting default value to 0, and using .innerHTML and console.log to display the number on HTML
 
 count = 0
 
@@ -75,10 +71,9 @@ studentCount.innerHTML = count
 
 console.log(count)
 
+// Event listener that triggers when user submits input, if all fields are filled out correctly, user input becomes new value
+// conditional statement for validation
 
-let newNameInput = document.querySelector('#student-name')
-
-let addButton = document.querySelector('#add-student')
 addButton.addEventListener('click', function(){
 let newName = newNameInput.value
 if (newName.length == 0) {
@@ -86,14 +81,17 @@ if (newName.length == 0) {
     return
 
 }
-let newIdInput = document.querySelector('#student-id')
+
+// Same idea as before, just applies to the Student ID  input
+
 let newID = newIdInput.value
 if (newID.length == 0){
     alert('Error - Enter ID')
     return
 }
 
-let newGPAInput = document.querySelector('#student-gpa')
+// Same idea as before, just applies to the GPA  input, more conditions using else if for this field
+
 let newGPA = newGPAInput.value
 if (newGPA.length == 0) {
     alert('Error - Enter valid GPA')
@@ -110,32 +108,39 @@ else if (newGPA <= 0) {
     return
 }
 
-let studentList = document.querySelector('#student-list')
+// Creating new LI element and setting the innerHTML to equal a string that includes all of the user input using template string
+
 let newListItem = document.createElement('li')
 newListItem.innerHTML = `Name: ${newName}, ID: ${newID}, GPA: ${newGPA}`
+
+// EventListener that will trigger a toggle  between the class attribute 'selected' , if element on list is clicked this will be
+// used to remove items from the list 
 
 newListItem.addEventListener('click', function(){
 newListItem.classList.toggle("selected");
 
 })
 
+// Using appendChild to add LI elements to the list, once items are added successfully, all user input fields will clear and
+// counter will increase by 1
 
 studentList.appendChild(newListItem)
 newNameInput.value = ''
 newIdInput.value = ''
 newGPAInput.value = ''
-count = count + 1
+count++
 studentCount.innerHTML = count
 
 console.log(count)
 
-let clearButton = document.querySelector('#remove-selected-students')
+// Eventlistener to trigger the clear button, clear button will only remove LI elements that have the 'selected' class attribute
+// for every LI element removed, counter will subtract 1
+
 clearButton.addEventListener('click', function(){
 let elementsToDelete = document.querySelectorAll(".selected")
 elementsToDelete.forEach(function(element){
 element.remove()
-count = count - 1
-
+count--
 studentCount.innerHTML = count
 
 console.log(count)
